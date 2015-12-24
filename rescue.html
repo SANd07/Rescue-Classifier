@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<title>Rescue Operations</title>
+<head>
+<meta name="twitter:widgets:theme" content="light">
+<meta name="twitter:widgets:link-color" content="#55acee">
+<meta name="twitter:widgets:border-color" content="#55acee">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<h1>Crisis Operations</h1>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+div.scroll {
+    background-color: #4CAF50;
+    width: 300px;
+    height: 500px;
+    overflow: scroll;
+}
+</style>
+
+
+<ul>
+  <li><a class="active" href="file:///home/sand/Desktop/crisis/rescue.html">Rescue</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/relief.html">Relief</a></li>
+  <ul style="float:right;list-style-type:none;">
+    <li><a href="#about">About</a></li>
+    <li><a href="#login">Contact Us</a></li>
+  </ul>
+</ul>
+
+<br><hr>
+</form>
+</head>
+<body>
+<div class="scroll" id="scrollbox"></div>
+<a onclick="addElement()">Add element</a>
+<script>
+  var num =0;
+	function addElement() {
+    num +=1;
+  var scrollbox = document.getElementById('scrollbox');
+
+    var button = document.createElement("input");
+    button.type = "button";
+    button.value = "Verify";
+    var n = num.toString();
+    var id = n+"button";
+    button.id = id;
+    button.addEventListener('click', function(){
+    Verify(button.id);
+});
+
+    button.class="btn btn-danger"
+    scrollbox.insertBefore(button, scrollbox.firstChild);
+   
+    // Create some element, e.g. div
+    var newElement = document.createElement('div');
+    newElement.setAttribute('id', n);
+    newElement.innerHTML = 'New element has been added!';
+    scrollbox.insertBefore(newElement, scrollbox.firstChild);
+//    <button type="button" onclick="Verify()" class="btn btn-danger">Not_Verified</button>
+
+//    scrollbox.appendChild(button);
+}
+</script>
+
+<script type="text/javascript">
+    window.setInterval("refreshDiv()", 5000);
+    function refreshDiv(){
+       document.getElementById("scrollbox").innerHTML = document.getElementById("scrollbox").innerHTML;  
+        }
+</script>
+
+<script type="text/javascript">
+  function Verify(id){
+//  var button_id =document.getElementById("id");
+//  button_id.innerHTML = "Verified";
+  console.log(id);
+  document.getElementById(id).value = "Verified";
+  document.getElementById(id).disabled =true;
+  document.getElementById("demo").innerHTML = id;
+  var scrollbox = document.getElementById('scrollbox');
+  var data = {
+    name: 'John Doe',
+    tweet_id: 'tweet_id',
+    text: 'abcd abcd abcd abcd',
+    Location: 'Washington',
+    Latitude: '22.22',
+    Longitude:'32.46' ,
+    Status: 'Verified',
+    classify: [
+        'rescue', 'relief', 'donate']
+};
+data.id = "tweet_id_data";
+var json = JSON.stringify(data);
+console.log(json);
+//  scrollbox.insertBefore(button, scrollbox.firstChild);
+  }
+</script>
+
+<p id="demo"> See</p>
+
+</body>
+</html> 
