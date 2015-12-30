@@ -100,6 +100,29 @@ window.twttr = (function(d, s, id) {
     Tweet
   </a>
     </div>
+    
+    <script>
+window.addEventListener("load", function() {
+    window.fbAsyncInit = function() {
+        FB.Event.subscribe('edge.create', function(targetUrl) {
+            ga('send', 'social', 'facebook', 'like', targetUrl);
+        });
+        FB.Event.subscribe('edge.remove', function(targetUrl) {
+            ga('send', 'social', 'facebook', 'unlike', targetUrl);
+        });
+    }
+
+    document.getElementById('tweetjs').addEventListener('load', function() {
+        twttr.ready(function (twttr) {
+            twttr.events.bind('tweet', function(e){
+                if(!e) return;
+                ga('send', 'social', 'twitter', 'tweet', theURL);
+            })
+        });
+    }, false);
+}, false);
+</script>
+
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
     <script type="text/javascript" charset="utf-8">
         window.twttr = (function (d, s, id) {
@@ -118,7 +141,6 @@ window.twttr = (function(d, s, id) {
         }(document, "script", "twitter-wjs"));
     </script>
 </div>
-
 
 
 <script type="text/javascript">
