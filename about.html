@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<title>Rescue Operations</title>
+<head>
+<meta name="twitter:widgets:theme" content="light">
+<meta name="twitter:widgets:link-color" content="#55acee">
+<meta name="twitter:widgets:border-color" content="#55acee">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<h1>Crisis Operations</h1>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+div.scroll {
+    background-color: #111;
+    width: 400px;
+    height: 700px;
+    overflow: scroll;
+}
+</style>
+
+<ul>
+  <li><a href="file:///home/sand/Desktop/crisis/rescue.html">Rescue</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/relief.html">Relief</a></li>
+  <ul style="float:right;list-style-type:none;">
+    <li><a class="active" href="file:///home/sand/Desktop/crisis/about.html">About</a></li>
+    <li><a href="#login">Contact Us</a></li>
+  </ul>
+</ul>
+
+<br><hr>
+</form>
+</head>
+<body>
+
+<button type="button" onclick="add()" class="btn btn-danger">Rescue</button>
+
+<a href="https://twitter.com/intent/tweet?in_reply_to=463440424141459456">Verify</a>
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));
+
+   var num =0;
+</script>
+
+<p id="demo"> See </p>
+
+<div class="scroll"id="scrollbox"></div>
+
+
+
+
+<div class="social_button twitter_button">
+    <div id="foo">
+        <a href="https://google.com" class="twitter-share-button" data-count="horizontal">
+    Tweet
+  </a>
+    </div>
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        window.twttr = (function (d, s, id) {
+            var t, js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            return window.twttr || (t = {
+                _e: [],
+                ready: function (f) {
+                    t._e.push(f)
+                }
+            });
+        }(document, "script", "twitter-wjs"));
+    </script>
+</div>
+
+
+
+<script type="text/javascript">
+twttr.events.bind('click', function(event) {
+    console.log('clicked');
+});​
+</script>
+
+<script>
+
+
+
+    var list = [
+    { id: '463440424141459456'},
+    { id: '245160944223793152'},
+    { id: '20'},
+    { id: '681831796011569152'}
+];
+function add(){
+  for( i=0; i<list.length; i++){
+  var scrollbox = document.getElementById('scrollbox');
+twttr.widgets.createTweet(
+  list[i].id,
+  scrollbox,
+  {
+    theme: 'dark'
+  }
+);
+var button = document.createElement("input");
+    button.type = "button";
+    button.value = "Verify";
+    with ({ n: i }) {
+      button.onclick = function() {
+        
+        button.id = "button"+n.toString();
+//        alert(button.id);
+        Verify(button.id);
+      };
+    }
+//    button.addEventListener('click', function(){
+//      Verify(3);
+//});
+    scrollbox.appendChild(button, scrollbox.firstChild);
+
+}}
+</script>
+<script type="text/javascript">
+  function Verify(but){
+  but = but.toString();
+  alert(but);
+//  document.getElementById(but).value = "Verified";
+//  document.getElementById(but).disabled =true;
+  document.getElementById("demo").innerHTML = but;
+  var scrollbox = document.getElementById('scrollbox');
+  var data = {
+    name: 'John Doe',
+    tweet_id: but.toString(),
+    text: 'abcd abcd abcd abcd',
+    Location: 'Washington',
+    Latitude: '22.22',
+    Longitude:'32.46' ,
+    Status: 'Verified',
+    classify: [
+        'rescue', 'relief', 'donate']
+};
+data.id = "tweet_id_data";
+var json = JSON.stringify(data);
+console.log(json);
+alert(json);
+//  scrollbox.insertBefore(button, scrollbox.firstChild);
+  }
+</script>
+
+
+</body>
