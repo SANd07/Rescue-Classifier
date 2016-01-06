@@ -43,19 +43,24 @@ li a:hover:not(.active) {
 
 div.scroll {
     background-color: #4CAF50;
-    width: 300px;
+    width: 350px;
     height: 500px;
     overflow: scroll;
 }
+div.boxed {
+  background-color: #111;
+  color : white;
+  width: 350px;
+} 
 </style>
 
-
 <ul>
-  <li><a class="active" href="http://htmlpreview.github.com/?https://github.com/SANd07/Rescue-Classifier/blob/master/rescue.html">Rescue</a></li>
-  <li><a href="http://htmlpreview.github.com/?https://github.com/SANd07/Rescue-Classifier/blob/master/relief.html">Relief</a></li>
-  <ul style="float:right;list-style-type:none;">
-    <li><a href="http://htmlpreview.github.com/?https://github.com/SANd07/Rescue-Classifier/blob/master/about.html">About</a></li>
+  <li><a class="active" href="file:///home/sand/Desktop/crisis/rescue.html">Rescue</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/relief.html">Relief</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/about.html">About</a></li>
+    <ul style="float:right;list-style-type:none;">
     <li><a href="#login">Contact Us</a></li>
+    <li><a href="#login">Login</a></li>
   </ul>
 </ul>
 
@@ -63,71 +68,106 @@ div.scroll {
 </form>
 </head>
 <body>
-<div class="scroll" id="scrollbox"></div>
+
+
+<div class="scroll" id="scrollbox">
+<div class="boxed" id="box"> RESCUE MESSAGES.
+</div>
+<div2 class="boxed" id="controls">
+<button type="button" onclick="add()" class="btn btn-warning">Verify</button>
+<button type="button" onclick="Rescue()" class="btn btn-warning">Probability</button>
+<button type="button" onclick="Rescue()" class="btn btn-danger">Submit</button>
+</div2>
+</div>
 <a onclick="addElement()">Add element</a>
 <script>
-  var num =0;
-	function addElement() {
-    num +=1;
-  var scrollbox = document.getElementById('scrollbox');
-
-    var button = document.createElement("input");
-    button.type = "button";
-    button.value = "Verify";
-    var n = num.toString();
-    var id = n+"button";
-    button.id = id;
-    button.addEventListener('click', function(){
-    Verify(button.id);
-});
-
-    button.class="btn btn-danger"
-    scrollbox.insertBefore(button, scrollbox.firstChild);
-   
-    // Create some element, e.g. div
-    var newElement = document.createElement('div');
-    newElement.setAttribute('id', n);
-    newElement.innerHTML = 'New element has been added!';
-    scrollbox.insertBefore(newElement, scrollbox.firstChild);
-//    <button type="button" onclick="Verify()" class="btn btn-danger">Not_Verified</button>
-
-//    scrollbox.appendChild(button);
+   var list = [
+    { id: '463440424141459456', text: 'blah', probb: 'x%', status: 'not verified'},
+    { id: '245160944223793152', text: 'blah blah',probb: 'y%', status: 'not verified'},
+    { id: '20', text: 'blah blah blah',probb: 'z%', status: 'not verified'},
+    { id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},
+    { id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'}
+];
+ var confidence=[];
+   for( i=0; i<list.length; i++){
+     confidence[i] = 0;
+   }
+function probab(x) {
+   alert(x);
 }
-</script>
 
-<script type="text/javascript">
-    window.setInterval("refreshDiv()", 5000);
-    function refreshDiv(){
-       document.getElementById("scrollbox").innerHTML = document.getElementById("scrollbox").innerHTML;  
-        }
+function add(){
+  for( i=0; i<list.length; i++){
+  var scrollbox = document.getElementById('scrollbox');
+  var box = document.createElement("div");
+  box.class = "boxed";
+  box.innerHTML = list[i].text;
+  var scrollbox = document.getElementById('scrollbox');
+  box.class = "boxed";
+  var verify = document.createElement("input");
+  verify.type = "button";
+  verify.id = "button"+i;
+  var report = document.createElement("input");
+  report.type = "button";
+  report.id = "button"+i;
+  report.value = "Report Wrong";
+
+  if (list[i].status == 'not verified'){
+    verify.value = "Verify";
+  }
+  else{
+    verify.value = "Verified";
+    verify.disabled = true;
+  }
+  
+  
+  var Probability = document.createElement("input");
+  Probability.type = "button";
+  Probability.value = "Probability";
+  var submit = document.createElement("input");
+  submit.type = "button";
+  submit.value = "Submit";
+  with ({ n: i }) {
+   Probability.onclick = function() {
+        alert(list[n].probb);
+      };
+
+    }
+      with ({ n: i }) {
+   verify.onclick = function() {
+    var send_id = "button"+n;
+    list[n].status = 'verified';
+    Verify(send_id);
+    };
+
+    }
+    scrollbox.appendChild(box, scrollbox.firstChild);
+    scrollbox.appendChild(verify, scrollbox.firstChild);
+    scrollbox.appendChild(Probability, scrollbox.firstChild);
+    scrollbox.appendChild(submit, scrollbox.firstChild);
+}}
+
 </script>
 
 <script type="text/javascript">
   function Verify(id){
-//  var button_id =document.getElementById("id");
-//  button_id.innerHTML = "Verified";
-  console.log(id);
   document.getElementById(id).value = "Verified";
   document.getElementById(id).disabled =true;
   document.getElementById("demo").innerHTML = id;
   var scrollbox = document.getElementById('scrollbox');
-  var data = {
-    name: 'John Doe',
-    tweet_id: 'tweet_id',
-    text: 'abcd abcd abcd abcd',
-    Location: 'Washington',
-    Latitude: '22.22',
-    Longitude:'32.46' ,
-    Status: 'Verified',
-    classify: [
-        'rescue', 'relief', 'donate']
-};
-data.id = "tweet_id_data";
-var json = JSON.stringify(data);
-console.log(json);
+  var id_num =  id.split("n")[1];
+  id_num = parseInt(id_num);
+  confidence[id_num] += 1;
+  console.log(list[id_num]);
 //  scrollbox.insertBefore(button, scrollbox.firstChild);
   }
 </script>
+
+<p id="demo"> See</p>
+
+
+</body>
+</html> 
 
 <p id="demo"> See</p>
 
