@@ -2,16 +2,17 @@
 <html>
 <title>Rescue Operations</title>
 <head>
-<meta name="twitter:widgets:theme" content="light">
-<meta name="twitter:widgets:link-color" content="#55acee">
-<meta name="twitter:widgets:border-color" content="#55acee">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <h1>Crisis Operations</h1>
-
+<meta property="og:url"           content="http://www.your-domain.com/your-page.html" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Your Website Title" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
 <style>
 ul {
     list-style-type: none;
@@ -42,24 +43,25 @@ li a:hover:not(.active) {
 }
 
 div.scroll {
-    background-color: #4CAF50;
-    width: 350px;
+    background-color: #111;
+    width: 500px;
     height: 500px;
     overflow: scroll;
 }
 div.boxed {
   background-color: #111;
   color : white;
-  width: 350px;
+  width: 50px;
 } 
 </style>
 
 <ul>
-  <li><a class="active" href="http://htmlpreview.github.com/?https://github.com/SANd07/Rescue-Classifier/blob/master/rescue.html">Rescue</a></li>
-  <li><a href="http://htmlpreview.github.com/?https://github.com/SANd07/Rescue-Classifier/blob/master/relief.html">Relief</a></li>
-  <li><a href="http://htmlpreview.github.com/?https://github.com/SANd07/Rescue-Classifier/blob/master/about.html">About</a></li>
+  <li><a class="active" href="file:///home/sand/Desktop/crisis/rescue.html">Rescue</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/relief.html">Relief</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/sorted.html">Rescue List</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/about.html">About</a></li>
     <ul style="float:right;list-style-type:none;">
-    <li><a href="#Contact">Contact Us</a></li>
+    <li><a href="#login">Contact Us</a></li>
     <li><a href="#login">Login</a></li>
   </ul>
 </ul>
@@ -67,27 +69,44 @@ div.boxed {
 <br><hr>
 </form>
 </head>
-<body>
+<body onload="add()">
 
 
+ <button type="button" onclick="add()" class="btn btn-danger">Refresh</button>
 <div class="scroll" id="scrollbox">
 <div class="boxed" id="box"> RESCUE MESSAGES.
 </div>
-<div2 class="boxed" id="controls">
-<button type="button" onclick="add()" class="btn btn-warning">Verify</button>
-<button type="button" onclick="Rescue()" class="btn btn-warning">Probability</button>
-<button type="button" onclick="Rescue()" class="btn btn-danger">Submit</button>
-</div2>
+
 </div>
 <a onclick="addElement()">Add element</a>
+
+
+<script type="text/javascript" src= 'database.js'></script>
 <script>
-   var list = [
-    { id: '463440424141459456', text: 'blah', probb: 'x%', status: 'not verified'},
-    { id: '245160944223793152', text: 'blah blah',probb: 'y%', status: 'not verified'},
-    { id: '20', text: 'blah blah blah',probb: 'z%', status: 'not verified'},
-    { id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},
-    { id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'},{ id: '681831796011569152', text: 'blah blah blah blah',probb: 'w%', status: 'not verified'}
-];
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));
+
+   var num =0;
+</script>
+
+
+
+<script>
+
  var confidence=[];
    for( i=0; i<list.length; i++){
      confidence[i] = 0;
@@ -97,21 +116,44 @@ function probab(x) {
 }
 
 function add(){
+  document.getElementById("scrollbox").innerHTML = "";
   for( i=0; i<list.length; i++){
   var scrollbox = document.getElementById('scrollbox');
-  var box = document.createElement("div");
+  scrollbox.style.color = "gray";
+  scrollbox.style.font =  "16px arial,serif";
+  var linebreak = document.createElement("br");
+    
+  var box = document.createElement("p");
   box.class = "boxed";
+  box.appendChild(linebreak);
   box.innerHTML = list[i].text;
+
+  box.style.border = "thick outset gray";
+
   var scrollbox = document.getElementById('scrollbox');
   box.class = "boxed";
+  var h = document.createElement("span");
+  h.id = "confidence"+i;
+  var t = document.createTextNode("  "+confidence[i]+"  ");  
+  h.appendChild(t);
+  var submission = document.createElement("span");
+  submission.id = "submit"+i;
+  var sub = document.createTextNode(" "+list[i].submit);
+  submission.appendChild(sub);
   var verify = document.createElement("input");
   verify.type = "button";
   verify.id = "button"+i;
-  var report = document.createElement("input");
-  report.type = "button";
-  report.id = "button"+i;
-  report.value = "Report Wrong";
 
+  var tweet = document.createElement("div");
+
+  twttr.widgets.createShareButton(
+  '#ChennaiFloods',
+  tweet,
+  {
+    text: list[i].text+'#ChennaiFloods'
+  }
+);
+  
   if (list[i].status == 'not verified'){
     verify.value = "Verify";
   }
@@ -119,57 +161,44 @@ function add(){
     verify.value = "Verified";
     verify.disabled = true;
   }
-  
-  
-  var Probability = document.createElement("input");
-  Probability.type = "button";
-  Probability.value = "Probability";
-  var submit = document.createElement("input");
-  submit.type = "button";
-  submit.value = "Submit";
-  with ({ n: i }) {
-   Probability.onclick = function() {
-        alert(list[n].probb);
-      };
 
-    }
-      with ({ n: i }) {
+   with ({ n: i }) {
    verify.onclick = function() {
-    var send_id = "button"+n;
     list[n].status = 'verified';
-    Verify(send_id);
+    Verify(n);
     };
 
     }
+    var probab = document.createTextNode(" "+list[i].probb + " probability");
+    scrollbox.appendChild(linebreak, scrollbox.firstChild);
     scrollbox.appendChild(box, scrollbox.firstChild);
-    scrollbox.appendChild(verify, scrollbox.firstChild);
-    scrollbox.appendChild(Probability, scrollbox.firstChild);
-    scrollbox.appendChild(submit, scrollbox.firstChild);
+    box.appendChild(linebreak);
+    box.appendChild(h);
+    box.appendChild(verify);
+    box.appendChild(probab);
+    box.appendChild(submission);
+
+    box.appendChild(tweet);
+
 }}
 
 </script>
 
 <script type="text/javascript">
   function Verify(id){
-  document.getElementById(id).value = "Verified";
-  document.getElementById(id).disabled =true;
-  document.getElementById("demo").innerHTML = id;
+  var button = "button"+id;
+  var text = "confidence"+id;
+  document.getElementById(button).value = "Verified";
+  document.getElementById(button).disabled =true;
   var scrollbox = document.getElementById('scrollbox');
-  var id_num =  id.split("n")[1];
-  id_num = parseInt(id_num);
-  confidence[id_num] += 1;
-  console.log(list[id_num]);
-//  scrollbox.insertBefore(button, scrollbox.firstChild);
+  if (confidence[id]==0){
+    list[id].submit ="submitted";
+    document.getElementById("submit"+id).innerHTML ="  submitted";
+  }
+  confidence[id] += 1;
+  document.getElementById(text).innerHTML =confidence[id]+"  ";
+
   }
 </script>
-
-<p id="demo"> See</p>
-
-
-</body>
-</html> 
-
-<p id="demo"> See</p>
-
 </body>
 </html> 
