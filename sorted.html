@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<Title>Sorted Rescue List</Title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<h1>Crisis Operations</h1>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+div.scroll {
+    background-color: #111;
+    width: 500px;
+    height: 500px;
+    overflow: scroll;
+}
+div.boxed {
+  background-color: #111;
+  color : white;
+  width: 350px;
+} 
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+th {
+    text-align: center;
+}
+
+div {
+    position: absolute;
+    display: none;
+    ...
+}​
+</style>
+
+<ul>
+  <li><a  href="file:///home/sand/Desktop/crisis/rescue.html">Rescue</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/relief.html">Relief</a></li>
+  <li><a class="active" href="file:///home/sand/Desktop/crisis/sorted.html">Rescue List</a></li>
+  <li><a href="file:///home/sand/Desktop/crisis/about.html">About</a></li>
+    <ul style="float:right;list-style-type:none;">
+    <li><a href="#login">Contact Us</a></li>
+    <li><a href="#login">Login</a></li>
+  </ul>
+</ul>
+
+<br><hr>
+</form>
+</head>
+
+<body onload="myFunction()">
+
+
+
+<a href="http://foo.com" data-tooltip="#foo">User</a>
+<a href="http://bar.com" data-tooltip="#bar">bar</a>
+
+<div id="foo"></div>
+
+<p id="b"></p>
+
+
+<table style="width:75%", id = "to-be">
+<caption>TO BE RESCUED</caption>
+<button type="button" onclick="myFunction()" class="btn btn-danger">Refresh</button>
+  <tr>
+    <th>Text</th>
+    <th>Location</th>   
+    <th>Time</th>
+    <th>Status</th>
+  </tr>
+
+
+<script type="text/javascript" src= 'database.js'></script>
+<script>
+
+function myFunction() {
+    myFunction2();
+    var table = document.getElementById("to-be");
+    var user = 2;
+
+    //make contact window
+    contact = document.createElement("p");
+    contact.innerHTML = "Name: "+users[user].name +"<br>"+"<br>"+"Contact No. :" + users[user].Contact_no +"<br>"+"<br>"+ "Address: "+ users[user].address +"<br>"+"<br>"+ users[user].twitter_account;
+
+
+
+
+    var count =0;
+    for( i=0; i<list.length; i++){
+      if (list[i].resolved =='no'){
+        count += 1;
+        if (count==1){
+          var row = table.insertRow(0);
+          var cell = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          cell.innerHTML = "Text";
+          cell2.innerHTML = "Location";
+          cell3.innerHTML = "Time";
+          cell4.innerHTML = "Status";
+          cell5.innerHTML = "Acting User";
+        }
+    var row = table.insertRow(count);
+    var cell = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    cell.innerHTML = list[i].text;
+    cell2.innerHTML = list[i].location;
+    cell3.innerHTML = list[i].time;
+    if (list[i].acting == "none"){
+    cell5.innerHTML = list[i].acting;}
+    else
+    {
+      cont = document.createElement('a');
+      cont.onclick = function(){
+      window.open("/contact.html");
+      contact.html}
+      cont.innerHTML = users[user].name; // <a>INNER_TEXT</a>
+      cell5.appendChild(cont);
+      
+
+    }
+    var inputyes = document.createElement("input");
+    var t = document.createTextNode("Resolved");
+    inputyes.type = "radio";
+    inputyes.id = "radio"+i;
+    cell4.appendChild(inputyes);
+    cell4.appendChild(t);
+    var linebreak = document.createElement("br");
+    var inpro = document.createElement("input");
+    var te = document.createTextNode("In Process");
+    inpro.type = "radio";
+    inpro.id = "process"+i;
+    cell4.appendChild(linebreak);
+    cell4.appendChild(inpro);
+    cell4.appendChild(te);
+    with ({ n: i }) {
+    inputyes.onclick = function() {
+    
+    var r=confirm("Are you sure the request has been resolved?");
+    if (r==true)
+      {
+        list[n].resolved = 'yes';
+        Exchange(n);
+
+      }
+    else
+      {
+        alert("Request has not yet been resolved");
+      }
+    };
+    }
+    with ({ n: i }) {
+    inpro.onclick = function() {
+    
+    var r=confirm("The request has been marked as in process and other volunteers may not respond to it.Are you sure?");
+    if (r==true)
+      {
+        alert("you are responding to the Request.");
+        list[n].acting =users[user];
+        Exchange(n);
+
+      }
+    else
+      {
+        alert("Request has not yet been resolved");
+      }
+    };
+    }
+  }
+
+
+}
+}
+</script>
+</table>
+<table style="width:75%", id = "resolved">
+<caption>Rescued</caption>
+  <tr>
+    <th>Text</th>
+    <th>Location</th>   
+    <th>Time</th>
+    <th>Rescued By</th>
+  </tr>
+<script>{
+  function myFunction2() {
+    var table = document.getElementById("resolved");
+    var count =0;
+    for( i=0; i<list.length; i++){
+      if (list[i].resolved =='yes'){
+        count += 1;
+        if (count==1){
+          var row = table.insertRow(0);
+          var cell = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          cell.innerHTML = "Text";
+          cell2.innerHTML = "Location";
+          cell3.innerHTML = "Time";
+          cell4.innerHTML = "Rescued By";
+        }
+      var row = table.insertRow(count);
+      var cell = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      cell.innerHTML = list[i].text;
+      cell2.innerHTML = list[i].location;
+      cell3.innerHTML = list[i].time;
+      cell4.innerHTML = "User_name";
+    }
+  }
+}
+}</script>
+
+
+<script type="text/javascript">
+function Exchange(id){
+  $("#to-be tr").remove();
+  $("#resolved tr").remove();
+  myFunction();
+}
+</script>
+
+<script type="text/javascript">
+  Div = document.getElementById("b");
+  a = document.createElement('a');
+    a.href =  'rescue.html'; // Insted of calling setAttribute 
+    a.innerHTML = "User" // <a>INNER_TEXT</a>
+    Div.appendChild(a); // Append the link to the div
+    document.body.appendChild(Div);
+    edit= document.getElementById("foo");
+    edit.innerHTML ="Name: John Doe"+ "<br>" +"Contact no: 9898989898" +"<br>"+ "Address: BlahBlah";
+
+
+$("a").hover(function(e) {
+    $($(this).data("tooltip")).css({
+        left: e.pageX + 1,
+        top: e.pageY + 1
+    }).stop().show(100);
+}, function() {
+    $($(this).data("tooltip")).hide();
+});
+</script>
+
+</table>
+</body>
+</html>
